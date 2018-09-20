@@ -95,7 +95,7 @@
 
 				      	//Send cities to GridElement component
 				      	this.$emit('clicked', this.array_cities)
-				      	
+
 				      	//Empty models
 				      	this.register.name = null
 				      	this.register.selectSeg = null

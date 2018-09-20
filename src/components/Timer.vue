@@ -3,15 +3,20 @@
 </template>
 
 <script>
+	var seconds = 0;
+	var urlicon = '';
+	var array_temp = [];
+
+	import { bus } from '../main';
+
 	export default {
-		props:['initial', 'name'],
+		props:['initial', 'name', 'array'],
 		data() {
 		    return {
 		      	current: this.initial,
 		      	timerInterval: null,
 		      	interval: 1,
-		      	city_name: this.name,
-		      	update_cities: [],
+		      	update_cities: this.array,
 		      	update_errors: []
 		    }
 		},
@@ -21,31 +26,33 @@
 		      	if (this.current <= 0) {
 		        	clearInterval(this.timerInterval)
 
-		        	//Update city
-		        	axios.get('//api.openweathermap.org/data/2.5/weather?q='+this.city_name+'&lang=es&appid=61d95c5cc22f6b5a43fa178e6e9c27df')
-				    	.then(response => {
-
-				      	// JSON responses are automatically parsed.
-				      	this.update_cities.push(response.data)
-
-				      	//Insert image in object appropriate
-				      	this.update_cities.filter(function (item) {
-				      		if(item.name == this.city_name){
-				      			return item.urlicon = 'http://openweathermap.org/img/w/'+item.weather[0].icon+'.png'
-				      		}
-						})
-
-				      	//Send cities to GridElement component
-				      	this.$emit('clicked', this.update_cities)
-				    })
-				    .catch(e => {
-				    	//Catch errors
-				      	this.update_errors = e
-				    })
+				    //console.log(this.name, this.update_cities)
+				    //Update city
+				    this.updateCities(this.name, this.update_cities)
 
 		        	this.current = this.initial
 
 		      	}
+		    },
+		    updateCities(name, cities){
+		    	axios.get('//api.openweathermap.org/data/2.5/weather?q='+name+'&lang=es&appid=61d95c5cc22f6b5a43fa178e6e9c27df')
+			    	.then(response => {
+
+			    		//Insert seconts and image in object appropriate
+				      	cities.filter(function (item) {
+				      		if(item.name == name){
+				      			item.test = 'insertion test'
+				      			return item = response.data	      			
+				      		}
+						})
+			    })
+			    .catch(e => {
+
+			    })
+
+			    //Send cities to GridElement component for bus emit
+				bus.$emit('updateEvent', cities)
+
 		    }
 		},
 		mounted() {

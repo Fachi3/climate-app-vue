@@ -18,8 +18,9 @@
 			            <small v-text="'Max '+city.main.temp_max+' °C,'"></small>
 			            <br>
 			            <Timer :initial='city.seconds'
-			            	   :name='city.name'
-			            	   @clicked="setRegister"/>
+			            	   :name="city.name"
+			            	   :array='cities'/>
+			           	<h1>{{city.test}}</h1>
 			            </div>
 			        </b-card>
 			    </b-card-group>
@@ -33,12 +34,21 @@
 <script>
 	import RegisterElement from './RegisterElement.vue'
 	import Timer from './Timer.vue'
+	import { bus } from '../main';
+	var arrcities = []
 
 	export default {
 		name:'GridElements',
 		components: {
 		    RegisterElement,
 		    Timer
+		},
+		created() {
+			//Setting obj update cities and restart model cities of this component
+		    bus.$on('updateEvent', obj => {
+		        this.cities = []
+		        this.cities = obj
+		    });
 		},
 		data() {
 		    return {
