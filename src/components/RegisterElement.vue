@@ -1,31 +1,32 @@
 <template>
-	<div>
-		<b-card class="text-center">
-			<b-form inline class="mb-12 mr-sm-12 mb-sm-0">
-		        <label class="sr-only" for="inlineFormInputName2">Name</label>
-      			<b-input class="mb-2 mr-sm-2 mb-sm-0" 
-      				id="inlineFormInputName2" 
-      				v-model="register.name"
-		        	type="text"
-      				placeholder="Introduzca la ciudad"/>
-      		
-		      	<b-form-select class="mb-2 mr-sm-2 mb-sm-0"
-		                    :options="register.seg"
-		                    v-model="register.selectSeg">
-		        	<option slot="first" :value="null">Refrescar en...</option>
-		      	</b-form-select>
+	<b-row>
+		<b-col sm="12" md="8" lg="5" style="margin: 0 auto">
+			<b-card class="text-center">
+				<b-form>
+			        <label class="sr-only" for="inlineFormInputName2">Name</label>
+	      			<b-input class="mb-3"
+	      				id="inlineFormInputName2" 
+	      				v-model="register.name"
+			        	type="text"
+	      				placeholder="Introduzca una ciudad"/>
+	      		
+			      	<b-form-select class="mb-3"
+			                :options="register.seg"
+			                v-model="register.selectSeg">
+			        	<option slot="first" :value="null">Refrescar cada...</option>
+			      	</b-form-select>
 
-			    <b-button class="mb-12 mr-sm-12 mb-sm-0"
-			    	@click="SearchCity">Buscar y Registrar</b-button>
-
-			    <div class="mb-12 mr-sm-12 mb-sm-0">
+				    <b-button class="button-search"
+				    	@click="SearchCity">Buscar y Registrar</b-button>
+				</b-form>
+				<div>
+					<br>
 				    <p v-if="message_require" v-text="message_require"></p>
-				    <pre v-if="array_cities.length > 0">{{ array_cities }}</pre>
 				    <p v-if="errors_cities.length > 0">Ciudad no encontrada</p>
 			    </div>
-			</b-form>
-		</b-card>
-    </div>
+			</b-card>
+		</b-col>
+    </b-row>
 </template>
 
 <script>
@@ -65,8 +66,6 @@
 		methods:{
 			SearchCity: function(){
 
-				console.log(this.register.selectSeg)
-
 				//If models exist or diferent of null
 				if(this.register.name && this.register.selectSeg){
 
@@ -79,9 +78,9 @@
 					secondsIteration = this.register.selectSeg
 
 					//Get city
-					axios.get('//api.openweathermap.org/data/2.5/weather?q='+this.register.name+'&lang=es&appid=61d95c5cc22f6b5a43fa178e6e9c27df')
+					axios.get('//api.openweathermap.org/data/2.5/weather?q='+this.register.name+'&units=metric&lang=es&appid=61d95c5cc22f6b5a43fa178e6e9c27df')
 				    	.then(response => {
-
+				    	this.errors_cities = [];
 				      	// JSON responses are automatically parsed.
 				      	this.array_cities.push(response.data)
 
@@ -102,7 +101,8 @@
 				    })
 				    .catch(e => {
 				    	//Catch errors
-				      	this.errors_cities = e
+				      	this.errors_cities.push(e)
+				      	console.log(this.errors_cities)
 				      	//Empty models
 				      	this.register.name = null
 				      	this.register.selectSeg = null
