@@ -1,6 +1,12 @@
-# app-climate
+This is the results
+-------------------
+![Ejemplo de Interfaz con desktop](example-ui/desktop.png)
 
-> A Vue.js project
+![Ejemplo de Interfaz con mobile](example-ui/mobile.png)
+
+# climate-app
+
+> A Vue.js project that describe the weather in cities
 
 ## Build Setup
 
