@@ -4,10 +4,10 @@
 
 # Dependencies used
 
-- axios
-- bootstrap
-- bootstrap-vue
-- vue
+- [axios](https://github.com/axios/axios)
+- [bootstrap 4](http://getbootstrap.com/)
+- [bootstrap-vue](https://bootstrap-vue.js.org/)
+- [vue](https://vuejs.org/)
 
 # Screenshots
 
