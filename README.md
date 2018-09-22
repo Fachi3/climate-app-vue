@@ -1,9 +1,6 @@
-This is the results
--------------------
-
 # Climate app
 
-> A Vue.js project that describe the weather in cities
+> A Vue.js project that describe the weather in cities and show weather in realtime
 
 # Dependencies used
 
@@ -11,6 +8,8 @@ This is the results
 - bootstrap
 - bootstrap-vue
 - vue
+
+# Screenshots
 
 ![Ejemplo de Interfaz con desktop](example-ui/desktop.png)
 
