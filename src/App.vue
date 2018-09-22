@@ -59,7 +59,7 @@ a {
 }
 
 .button-search{
-  margin: 0 28%;
+  margin: 0 22%;
 }
 
 .hover {
