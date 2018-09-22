@@ -1,12 +1,20 @@
 This is the results
 -------------------
+
+# Climate app
+
+> A Vue.js project that describe the weather in cities
+
+# Dependencies used
+
+- axios
+- bootstrap
+- bootstrap-vue
+- vue
+
 ![Ejemplo de Interfaz con desktop](example-ui/desktop.png)
 
 ![Ejemplo de Interfaz con mobile](example-ui/mobile.png)
-
-# climate-app
-
-> A Vue.js project that describe the weather in cities
 
 ## Build Setup
 
