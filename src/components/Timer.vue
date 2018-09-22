@@ -30,9 +30,7 @@
 		      	if (this.current <= 0) {
 		        	clearInterval(this.timerInterval)
 
-				    //console.log(this.name, this.update_cities)
 				    //Update city
-				    console.log(this.name, this.update_cities)
 				    this.updateCities(this.name, this.update_cities)
 
 		        	this.current = this.initial
